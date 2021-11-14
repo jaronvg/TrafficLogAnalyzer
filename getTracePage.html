@@ -1,0 +1,36 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="styles.css">
+    <title>Traffic Log Analyzer</title>
+</head>
+<body>
+    <br><br><br><br><br><br><br><br>
+                                <div id="divCenter">
+                                    <input readonly type="text" id="devID" name="fname">
+                                </div>
+    <br>
+    <div id="drag-file">
+        <p id="test"></p>
+    </div>
+    <script>
+        var devID = sessionStorage.getItem("obj");
+        document.getElementById("devID").value = devID;
+        window.onload = function () {
+            var filePaths = [];
+            const testFolder = './traces/';
+            const getFiles = require('fs');
+            getFiles.readdirSync(testFolder).forEach(file => {
+                filePaths.push(file)
+            });
+            for (var x = 0; x < filePaths.length; x++) {
+                if (filePaths[x] !== "") {
+                    document.getElementById("test").innerHTML += "<button id=\"x\">X</button><span id=\"newSpan\">" + filePaths[x] + "<button id=\"trace\"><a href=\"" + filePaths[x] + "\" download=\"" + filePaths[x] + "\">Download</a></button></span><br>";
+                }
+            }
+        }
+    </script>
+</body>
+</html>

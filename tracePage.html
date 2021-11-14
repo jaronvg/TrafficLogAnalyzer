@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="styles.css">
+    <title>Traffic Log Analyzer</title>
+</head>
+<body>
+    <br><br><br><br><br><br><br><br>
+    <div id="divCenter">
+        <input type="text" id="devID" name="fname" placeholder="Developer ID">
+    </div>
+    <br>
+    <div id="drag-file">
+        <br>
+        <br>
+        <button id="click">Browse</button>
+        <p id="pAdd">Or</p><br>
+        <h2 id="headerAdd">Drag and Drop Files Here</h2>
+        <input id="fileIn" type="file" onchange="getInput()" hidden />
+        <p id="test"></p>
+        <p id="test2"></p>
+        <script>
+            let id = 0;
+            var rows = 0;
+            var check = new Boolean(true);
+            const urlList = [];
+            function getFileExplorer() {
+                document.getElementById('fileIn').click();
+            }
+            document.getElementById('click').onclick = getFileExplorer;
+            function removeLine(button, id) {
+                button.remove();
+                document.getElementById(id).remove();
+                var index = id;
+                if (index > -1) {
+                    urlList[id] = "";
+                }
+                rows--;
+                if (rows == 0) {
+                    document.getElementById("traceAll").remove();
+                    document.getElementById("headerRemove").setAttribute("id", "headerAdd");
+                    document.getElementById("pRemove").setAttribute("id", "pAdd");
+                    check = true;
+                }
+                console.log('URLs: ', urlList);
+                console.log('ID: ', id);
+            }
+
+            function getInput() {
+                if (check) {
+                    document.getElementById("headerAdd").setAttribute("id", "headerRemove");
+                    document.getElementById("pAdd").setAttribute("id", "pRemove");
+                    check = false;
+                }
+                document.getElementById("test").innerHTML += "<button id=\"x\" onclick=\"removeLine(this," + id + ")\">X</button><span id=\"" + id + "\">" + document.getElementById("fileIn").value + "<button id=\"trace\" onclick=\"doTrace(urlList, false, " + id + ")\">Trace</button><br></span>";
+                urlList.push(document.getElementById("test").value);
+                id++;
+                rows++;
+            }
+
+            function sendData() {
+                localStorage.setItem('objectToPass', urlList);
+                localStorage.setItem("urls", JSON.stringify(urlList));
+                if (document.getElementsByName("fname")[0].value == "") {
+                    document.getElementsByName("fname")[0].setAttribute("id", "devIdError");
+                    document.getElementsByName("fname")[0].setAttribute("placeholder", "Please Enter Developer ID");
+                } else {
+                    sessionStorage.setItem('obj', document.getElementsByName("fname")[0].value);
+                    location.replace("getTracePage.html");
+                }
+            }
+
+            function sendItem(fName) {
+                localStorage.setItem('objectToPass', fName);
+                if (document.getElementsByName("fname")[0].value == "") {
+                    document.getElementsByName("fname")[0].setAttribute("id", "devIdError");
+                    document.getElementsByName("fname")[0].setAttribute("placeholder", "Please Enter Developer ID");
+                } else {
+                    sessionStorage.setItem('obj', document.getElementsByName("fname")[0].value);
+                    location.replace("getTracePage.html");
+                }
+            }
+
+            (function () {
+                var holder = document.getElementById('drag-file');
+
+                holder.ondragover = () => {
+                    return false;
+                };
+
+                holder.ondragleave = () => {
+                    return false;
+                };
+
+                holder.ondragend = () => {
+                    return false;
+                };
+
+                holder.ondrop = (e) => {
+                    e.preventDefault();
+                    for (let f of e.dataTransfer.files) {
+                        if (check) {
+                            document.getElementById("headerAdd").setAttribute("id", "headerRemove");
+                            document.getElementById("pAdd").setAttribute("id", "pRemove");
+                            check = false;
+                        }
+                        console.log('File(s) you dragged here: ', f.path)
+                        if (f.name.search(".txt") !== -1) {
+                            document.getElementById("test").innerHTML += "<button id=\"x\" onclick=\"removeLine(this," + id + ")\">X</button><span id=\"" + id + "\">" + f.name + "<button id=\"trace\" onclick=\"doTrace(urlList, false, " + id + ")\">Trace</button><br></span>";
+                            urlList.push(f.path);
+                            id++;
+                            rows++;
+                        } else {
+
+                        }
+                    }
+                    if (rows > 0) {
+                        if (document.getElementById("traceAll") == null) {
+                            document.getElementById("test2").innerHTML += "<center><button id=\"traceAll\" onclick=\"doTrace(urlList, true, 1)\">Trace All</button></center>";
+                        }
+                    }
+                    return false;
+                };
+            })();
+            function doTrace(params, doAll, idx) {
+                var child = require('child_process').execFile;
+                var executablePath = "C:\\Users\\jaron\\electron-quick-start\\a.exe";
+                var parameters = [];
+                if (document.getElementsByName("fname")[0].value == "") {
+                    document.getElementsByName("fname")[0].setAttribute("id", "devIdError");
+                    document.getElementsByName("fname")[0].setAttribute("placeholder", "Please Enter Developer ID");
+                } else {
+                    if (doAll) {
+                        for (let i = 0; i < params.length; i++) {
+                            parameters.push(params[i]);
+                            console.log(params[i])
+                        }
+                    } else {
+                        parameters.push(params[idx]);
+                    }
+                    child(executablePath, parameters, function (err, data) {
+                        if (err) {
+                            console.error(err);
+                            return;
+                        }
+
+                        console.log(data.toString());
+                    });
+                    sessionStorage.setItem('obj', document.getElementsByName("fname")[0].value);
+                    location.replace("getTracePage.html");
+                }
+            }
+        </script>
+    </div>
+</body>
+</html>

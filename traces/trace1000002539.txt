@@ -1,0 +1,48 @@
+2021-10-01 20:09:02 +0000	http://www.apache.org/	-	0	0	107
+2021-10-01 20:10:49 +0000	http://www.washington.edu/	-	200	91553	413
+2021-10-01 20:17:42 +0000	www.mangareader.net	-	200	10184	28
+2021-10-01 20:18:10 +0000	manganelo.com	-	200	6096	1
+2021-10-01 20:18:11 +0000	readmanganato.com	-	200	49716	-1
+Correctness = 100%
+2021-10-01 20:09:02 +0000	http://www.apache.org/	-	0	0	107
+2021-10-01 20:10:49 +0000	http://www.washington.edu/	-	200	91553	413
+2021-10-01 20:17:42 +0000	www.mangareader.net	-	200	10184	28
+2021-10-01 20:18:10 +0000	manganelo.com	-	200	6096	1
+2021-10-01 20:18:11 +0000	readmanganato.com	-	200	49716	-1
+Correctness = 100%
+2021-10-01 20:09:02 +0000	http://www.apache.org/	-	0	0	107
+2021-10-01 20:10:49 +0000	http://www.washington.edu/	-	200	91553	413
+2021-10-01 20:17:42 +0000	www.mangareader.net	-	200	10184	28
+2021-10-01 20:18:10 +0000	manganelo.com	-	200	6096	1
+2021-10-01 20:18:11 +0000	readmanganato.com	-	200	49716	-1
+Correctness = 100%
+2021-10-01 20:09:02 +0000	http://www.apache.org/	-	0	0	107
+2021-10-01 20:10:49 +0000	http://www.washington.edu/	-	200	91553	413
+2021-10-01 20:17:42 +0000	www.mangareader.net	-	200	10184	28
+2021-10-01 20:18:10 +0000	manganelo.com	-	200	6096	1
+2021-10-01 20:18:11 +0000	readmanganato.com	-	200	49716	-1
+Correctness = 100%
+2021-10-01 20:09:02 +0000	http://www.apache.org/	-	0	0	107
+2021-10-01 20:10:49 +0000	http://www.washington.edu/	-	200	91553	413
+2021-10-01 20:17:42 +0000	www.mangareader.net	-	200	10184	28
+2021-10-01 20:18:10 +0000	manganelo.com	-	200	6096	1
+2021-10-01 20:18:11 +0000	readmanganato.com	-	200	49716	-1
+Correctness = 100%
+2021-10-01 20:09:02 +0000	http://www.apache.org/	-	0	0	107
+2021-10-01 20:10:49 +0000	http://www.washington.edu/	-	200	91553	413
+2021-10-01 20:17:42 +0000	www.mangareader.net	-	200	10184	28
+2021-10-01 20:18:10 +0000	manganelo.com	-	200	6096	1
+2021-10-01 20:18:11 +0000	readmanganato.com	-	200	49716	-1
+Correctness = 100%
+2021-10-01 20:09:02 +0000	http://www.apache.org/	-	0	0	107
+2021-10-01 20:10:49 +0000	http://www.washington.edu/	-	200	91553	413
+2021-10-01 20:17:42 +0000	www.mangareader.net	-	200	10184	28
+2021-10-01 20:18:10 +0000	manganelo.com	-	200	6096	1
+2021-10-01 20:18:11 +0000	readmanganato.com	-	200	49716	-1
+Correctness = 100%
+2021-10-01 20:09:02 +0000	http://www.apache.org/	-	0	0	107
+2021-10-01 20:10:49 +0000	http://www.washington.edu/	-	200	91553	413
+2021-10-01 20:17:42 +0000	www.mangareader.net	-	200	10184	28
+2021-10-01 20:18:10 +0000	manganelo.com	-	200	6096	1
+2021-10-01 20:18:11 +0000	readmanganato.com	-	200	49716	-1
+Correctness = 100%

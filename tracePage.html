@@ -124,7 +124,7 @@
             })();
             function doTrace(params, doAll, idx) {
                 var child = require('child_process').execFile;
-                var executablePath = "C:\\Users\\jaron\\electron-quick-start\\a.exe";
+                var executablePath = "a.exe";
                 var parameters = [];
                 if (document.getElementsByName("fname")[0].value == "") {
                     document.getElementsByName("fname")[0].setAttribute("id", "devIdError");
@@ -147,7 +147,9 @@
                         console.log(data.toString());
                     });
                     sessionStorage.setItem('obj', document.getElementsByName("fname")[0].value);
-                    location.replace("getTracePage.html");
+                    setTimeout(function () {
+                        location.replace("getTracePage.html");
+                    }, 1000);
                 }
             }
         </script>

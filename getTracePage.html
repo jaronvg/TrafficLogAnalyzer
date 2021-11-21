@@ -13,13 +13,14 @@
                                 </div>
     <br>
     <div id="drag-file">
+        <h2 id="headerRemove">No More Traces</h2>
         <p id="test"></p>
     </div>
     <script>
         var devID = sessionStorage.getItem("obj");
         document.getElementById("devID").value = devID;
+        var filePaths = [];
         window.onload = function () {
-            var filePaths = [];
             const testFolder = './traces/';
             const getFiles = require('fs');
             getFiles.readdirSync(testFolder).forEach(file => {
@@ -27,10 +28,35 @@
             });
             for (var x = 0; x < filePaths.length; x++) {
                 if (filePaths[x] !== "") {
-                    document.getElementById("test").innerHTML += "<button id=\"x\">X</button><span id=\"newSpan\">" + filePaths[x] + "<button id=\"trace\"><a href=\"" + filePaths[x] + "\" download=\"" + filePaths[x] + "\">Download</a></button></span><br>";
+                    document.getElementById("test").innerHTML += "<button id=\"x\" onclick=\"deleteTrace(" + x + ")\">X</button><span id=\"newSpan\">" + filePaths[x] + "<a id=\"newA\" href=\"viewTable.html\">View</a><button id=\"trace\"><a href=\"traces/" + filePaths[x] + "\" download=\"" + filePaths[x] + "\">Download</a></button></span><br>";
                 }
             }
+            if (filePaths.length == 0) {
+                document.getElementById("headerRemove").setAttribute("id", "headerAdd");
+                document.getElementById("headerAdd").innerHTML += "<br><br><br><br><br><br><br><br><br><br><br><br><br><br><button id=\"traceAll\" onclick=\"closeApp()\">Close</button>";
+            }
         }
+        //Reference to delete file: https://sebhastian.com/javascript-delete-file/
+        function deleteTrace(x) {
+            const fs = require("fs");
+            const filePath = "traces/" + filePaths[x];
+
+            try {
+                fs.unlinkSync(filePath);
+            } catch (err) {
+                console.error(err);
+            }
+            location.reload();
+        }
+        function closeApp() {
+            window.close();
+        }
+        //test code for download
+        //function moveFile(path) {
+        //    var object = new ActiveXObject("Scripting.FileSystemObject");
+        //    var file = object.GetFile(path);
+        //    file.Move("");
+        //}
     </script>
 </body>
 </html>

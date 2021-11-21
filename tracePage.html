@@ -52,10 +52,15 @@
                     document.getElementById("pAdd").setAttribute("id", "pRemove");
                     check = false;
                 }
-                document.getElementById("test").innerHTML += "<button id=\"x\" onclick=\"removeLine(this," + id + ")\">X</button><span id=\"" + id + "\">" + document.getElementById("fileIn").value + "<button id=\"trace\" onclick=\"doTrace(urlList, false, " + id + ")\">Trace</button><br></span>";
-                urlList.push(document.getElementById("test").value);
+                document.getElementById("test").innerHTML += "<button id=\"x\" onclick=\"removeLine(this," + id + ")\">X</button><span id=\"" + id + "\">" + document.getElementById("fileIn").files[0].name + "<button id=\"trace\" onclick=\"doTrace(urlList, false, " + id + ")\">Trace</button><br></span>";
+                urlList.push(document.getElementById("fileIn").files[0].path);
                 id++;
                 rows++;
+                if (rows > 0) {
+                    if (document.getElementById("traceAll") == null) {
+                        document.getElementById("test2").innerHTML += "<center><button id=\"traceAll\" onclick=\"doTrace(urlList, true, 1)\">Trace All</button></center>";
+                    }
+                }
             }
 
             function sendData() {
@@ -75,12 +80,18 @@
                 if (document.getElementsByName("fname")[0].value == "") {
                     document.getElementsByName("fname")[0].setAttribute("id", "devIdError");
                     document.getElementsByName("fname")[0].setAttribute("placeholder", "Please Enter Developer ID");
+                    const NOTIFICATION_TITLE = 'Basic Notification';
+                    const NOTIFICATION_BODY = 'Notification from the Main process';
+                    notify = new Notification({ title: NOTIFICATION_TITLE, body: NOTIFICATION_BODY });
+                    notify.show();
+                    mainWindow.moveTop();
+                    mainWindow.focus();
                 } else {
                     sessionStorage.setItem('obj', document.getElementsByName("fname")[0].value);
                     location.replace("getTracePage.html");
                 }
             }
-
+            //Reference for drag and drop: https://ourcodeworld.com/articles/read/288/how-to-handle-drag-and-drop-file-feature-in-electron-framework
             (function () {
                 var holder = document.getElementById('drag-file');
 

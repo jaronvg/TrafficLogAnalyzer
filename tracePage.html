@@ -80,12 +80,6 @@
                 if (document.getElementsByName("fname")[0].value == "") {
                     document.getElementsByName("fname")[0].setAttribute("id", "devIdError");
                     document.getElementsByName("fname")[0].setAttribute("placeholder", "Please Enter Developer ID");
-                    const NOTIFICATION_TITLE = 'Basic Notification';
-                    const NOTIFICATION_BODY = 'Notification from the Main process';
-                    notify = new Notification({ title: NOTIFICATION_TITLE, body: NOTIFICATION_BODY });
-                    notify.show();
-                    mainWindow.moveTop();
-                    mainWindow.focus();
                 } else {
                     sessionStorage.setItem('obj', document.getElementsByName("fname")[0].value);
                     location.replace("getTracePage.html");

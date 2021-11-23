@@ -6,14 +6,59 @@
 </head>
 <body>
     <br><br><br><br><br><br><br><br>
-    <div id="divCenter">
-        <input readonly type="text" id="devID" name="fname">
-    </div>
+                                <div id="divCenter">
+                                    <input readonly type="text" id="devID" name="fname">
+                                </div>
     <br>
-    <div id="drag-file">
-        <h2 id="headerRemove">No More Traces</h2>
-        <p id="test"></p>
-    </div>
-    
+    <table id="table">
+        <tr>
+            <!--Check to make sure they are right-->
+            <th>Timestamp</th>
+            <th>URL</th>
+            <th>Referrer</th>
+            <th>Status Code</th>
+            <th>Content Size</th>
+            <th>Time Spent</th>
+        </tr>
+
+
+    </table>
+    <script>
+        var devID = sessionStorage.getItem("obj");
+        document.getElementById("devID").value = devID;
+        var fileName = localStorage.getItem("object");
+        const getPath = location.pathname.split("/");
+        var filePath = "";
+        var table = document.getElementById("table");
+        for (var x = 1; x < getPath.length - 1; x++) {
+            filePath = filePath + getPath[x] + "/";
+        }
+        filePath = filePath + "/traces/" + fileName;
+        window.onload = function () {
+            const fileSystem = require('fs')
+            fileSystem.readFile(filePath, (error, data) => {
+                if (error) throw error;
+                console.log(data.toString('utf8'));
+                const allLines = data.toString('utf8').split("\n");
+                for (var x = 0; x < allLines.length; x++) {
+                    var tokens = allLines[x].split("\t");
+                    var row = table.insertRow(x + 1);
+                    var cellOne = row.insertCell(0);
+                    var cellTwo = row.insertCell(1);
+                    var cellThree = row.insertCell(2);
+                    var cellFour = row.insertCell(3);
+                    var cellFive = row.insertCell(4);
+                    var cellSix = row.insertCell(5);
+                    cellOne.innerHTML = tokens[0];
+                    cellTwo.innerHTML = tokens[1];
+                    cellThree.innerHTML = tokens[2];
+                    cellFour.innerHTML = tokens[3];
+                    cellFive.innerHTML = tokens[4];
+                    cellSix.innerHTML = tokens[5];
+
+                }
+            })
+        }
+    </script>
 </body>
 </html>

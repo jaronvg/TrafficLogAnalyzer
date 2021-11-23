@@ -71,8 +71,31 @@ a {
 }
 
 #newA {
-    text-decoration: underline;
-    color: blue;
+    box-shadow: inset 0px 1px 0px 0px #bee2f9;
+    background: linear-gradient(to bottom right, #295D8A 5%, #4682B4 100%);
+    background-color: black;
+    border-radius: 1px;
+    border: 1px solid black;
+    display: inline-block;
+    cursor: pointer;
+    color: white;
+    font-family: Arial;
+    font-size: 12px;
+    padding: 6px 6px;
+    text-decoration: none;
+    text-shadow: 0px 1px 0px gray;
+    height: 25px;
+    width: 70px;
+}
+
+#newA:hover {
+    background: linear-gradient(to bottom right, #468ccf 5%, #63b8ee 100%);
+    background-color: #468ccf;
+}
+
+#newA:active {
+    position: relative;
+    top: 1px;
 }
 
 #drag-file {
@@ -241,7 +264,6 @@ span {
     text-shadow: 0px 1px 0px gray;
     height: 25px;
     width: 70px;
-    float: right;
 }
 
 #trace:hover {
@@ -258,4 +280,38 @@ span {
     color: white;
     font-family: Arial;
     text-align: left;
+}
+
+#inner {
+    color: white;
+    font-family: Arial;
+    float: right;
+}
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+th {
+    border: 1px solid black;
+    color: white;
+    text-align: center;
+    padding: 8px;
+    background-image: linear-gradient(to bottom right, #4dcc39, #3cd5e6);
+}
+
+td {
+    text-align: center;
+    padding: 8px;
+}
+tr:nth-child(odd) {
+    background-color: white;
+}
+
+tr:nth-child(even) {
+    background-color: lightgreen;
 }

@@ -52,7 +52,7 @@
                     document.getElementById("pAdd").setAttribute("id", "pRemove");
                     check = false;
                 }
-                document.getElementById("test").innerHTML += "<button id=\"x\" onclick=\"removeLine(this," + id + ")\">X</button><span id=\"" + id + "\">" + document.getElementById("fileIn").files[0].name + "<button id=\"trace\" onclick=\"doTrace(urlList, false, " + id + ")\">Trace</button><br></span>";
+                document.getElementById("test").innerHTML += "<button id=\"x\" onclick=\"removeLine(this," + id + ")\">X</button><span id=\"" + id + "\">" + document.getElementById("fileIn").files[0].name + "<span id=\"inner\"><button id=\"newA\" onclick=\"doTrace(urlList, false, " + id + ")\">Trace</button><br></span></span>";
                 urlList.push(document.getElementById("fileIn").files[0].path);
                 id++;
                 rows++;
@@ -64,8 +64,6 @@
             }
 
             function sendData() {
-                localStorage.setItem('objectToPass', urlList);
-                localStorage.setItem("urls", JSON.stringify(urlList));
                 if (document.getElementsByName("fname")[0].value == "") {
                     document.getElementsByName("fname")[0].setAttribute("id", "devIdError");
                     document.getElementsByName("fname")[0].setAttribute("placeholder", "Please Enter Developer ID");
@@ -76,7 +74,6 @@
             }
 
             function sendItem(fName) {
-                localStorage.setItem('objectToPass', fName);
                 if (document.getElementsByName("fname")[0].value == "") {
                     document.getElementsByName("fname")[0].setAttribute("id", "devIdError");
                     document.getElementsByName("fname")[0].setAttribute("placeholder", "Please Enter Developer ID");
@@ -111,7 +108,7 @@
                         }
                         console.log('File(s) you dragged here: ', f.path)
                         if (f.name.search(".txt") !== -1) {
-                            document.getElementById("test").innerHTML += "<button id=\"x\" onclick=\"removeLine(this," + id + ")\">X</button><span id=\"" + id + "\">" + f.name + "<button id=\"trace\" onclick=\"doTrace(urlList, false, " + id + ")\">Trace</button><br></span>";
+                            document.getElementById("test").innerHTML += "<button id=\"x\" onclick=\"removeLine(this," + id + ")\">X</button><span id=\"" + id + "\">" + f.name + "<span id=\"inner\"><button id=\"newA\" onclick=\"doTrace(urlList, false, " + id + ")\">Trace</button><br></span></span>";
                             urlList.push(f.path);
                             id++;
                             rows++;

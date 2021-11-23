@@ -28,7 +28,7 @@
             });
             for (var x = 0; x < filePaths.length; x++) {
                 if (filePaths[x] !== "") {
-                    document.getElementById("test").innerHTML += "<button id=\"x\" onclick=\"deleteTrace(" + x + ")\">X</button><span id=\"newSpan\">" + filePaths[x] + "<a id=\"newA\" href=\"viewTable.html\">View</a><button id=\"trace\"><a href=\"traces/" + filePaths[x] + "\" download=\"" + filePaths[x] + "\">Download</a></button></span><br>";
+                    document.getElementById("test").innerHTML += "<button id=\"x\" onclick=\"deleteTrace(" + x + ")\">X</button><span id=\"newSpan\">" + filePaths[x] + "<span id=\"inner\"><button id=\"newA\" onclick=\"redirect(" + x + ")\">View</button><button id=\"trace\"><a href=\"traces/" + filePaths[x] + "\" download=\"" + filePaths[x] + "\">Download</a></button></span></span><br>";
                 }
             }
             if (filePaths.length == 0) {
@@ -37,6 +37,10 @@
             }
         }
         //Reference to delete file: https://sebhastian.com/javascript-delete-file/
+        function redirect(x) {
+            localStorage.setItem('object', filePaths[x]);
+            location.replace("viewTable.html");
+        }
         function deleteTrace(x) {
             const fs = require("fs");
             const filePath = "traces/" + filePaths[x];

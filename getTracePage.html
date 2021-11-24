@@ -28,7 +28,7 @@
             });
             for (var x = 0; x < filePaths.length; x++) {
                 if (filePaths[x] !== "") {
-                    document.getElementById("test").innerHTML += "<button id=\"x\" onclick=\"deleteTrace(" + x + ")\">X</button><span id=\"newSpan\">" + filePaths[x] + "<span id=\"inner\"><button id=\"newA\" onclick=\"redirect(" + x + ")\">View</button><button id=\"trace\"><a href=\"traces/" + filePaths[x] + "\" download=\"" + filePaths[x] + "\">Download</a></button></span></span><br>";
+                    document.getElementById("test").innerHTML += "<button id=\"x\" onclick=\"deleteTrace(" + x + ")\">X</button><span id=\"newSpan\">" + filePaths[x] + "<span id=\"inner\"><button id=\"newA\" onclick=\"redirect(" + x + ")\">View</button><button id=\"newA\"><a href=\"./traces/" + filePaths[x] + "\" download>Download</a></button></span></span><br>";
                 }
             }
             if (filePaths.length == 0) {
@@ -55,12 +55,6 @@
         function closeApp() {
             window.close();
         }
-        //test code for download
-        //function moveFile(path) {
-        //    var object = new ActiveXObject("Scripting.FileSystemObject");
-        //    var file = object.GetFile(path);
-        //    file.Move("");
-        //}
     </script>
 </body>
 </html>

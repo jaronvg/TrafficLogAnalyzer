@@ -5,10 +5,13 @@
     <title>Traffic Log Analyzer</title>
 </head>
 <body>
-    <br><br><br><br><br><br><br><br>
-                                <div id="divCenter">
-                                    <input readonly type="text" id="devID" name="fname">
-                                </div>
+    <br>
+    <span><button id="newA" onclick="redirect()">Back</button>
+    <button id="redButton" onclick="closeApp()">Close</button></span>
+    <br><br><br><br>
+    <div id="divCenter">
+        <input readonly type="text" id="devID" name="fname">
+    </div>
     <br>
     <table id="table">
         <tr>
@@ -58,6 +61,12 @@
 
                 }
             })
+        }
+        function closeApp() {
+            window.close();
+        }
+        function redirect() {
+            location.replace("getTracePage.html");
         }
     </script>
 </body>

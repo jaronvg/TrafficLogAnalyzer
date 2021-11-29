@@ -21,11 +21,13 @@ function createWindow () {
                 throw error;
             }
             for (const file of dirFiles) {
-                fs.unlink("traces/" + file, error => {
-                    if (error) {
-                        throw error;
-                    }
-                });
+                if (file != "ignore.txt") {
+                    fs.unlink("traces/" + file, error => {
+                        if (error) {
+                            throw error;
+                        }
+                    });
+                }
             }
         });
         try {

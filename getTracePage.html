@@ -24,7 +24,9 @@
             const testFolder = './traces/';
             const getFiles = require('fs');
             getFiles.readdirSync(testFolder).forEach(file => {
-                filePaths.push(file)
+                if (file != "ignore.txt") {
+                    filePaths.push(file)
+                }
             });
             for (var x = 0; x < filePaths.length; x++) {
                 if (filePaths[x] !== "") {

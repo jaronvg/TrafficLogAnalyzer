@@ -37,6 +37,7 @@
             filePath = filePath + getPath[x] + "/";
         }
         filePath = filePath + "/traces/" + fileName;
+        filePath = filePath.split('%20').join(' ');
         window.onload = function () {
             const fileSystem = require('fs')
             fileSystem.readFile(filePath, (error, data) => {

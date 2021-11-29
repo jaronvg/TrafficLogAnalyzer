@@ -119,7 +119,7 @@
                         }
                         console.log('File(s) you dragged here: ', f.path)
                         if (f.name.search(".txt") !== -1) {
-                            document.getElementById("test").innerHTML += "<button id=\"x\" onclick=\"removeLine(this," + id + ")\">X</button><span id=\"" + id + "\">" + f.name + "<span id=\"inner\"><button id=\"newA\" onclick=\"doTrace(urlList, false, " + id + ")\">Trace</button><br></span></span>";
+                            document.getElementById("test").innerHTML += "<button id=\"x\" onclick=\"removeLine(this," + id + ")\">X</button><span id=\"" + id + "\">" + f.name + "<span id=\"inner\"><button id=\"newA\" onclick=\"doTrace(urlList, false, " + id + ")\">Trace</button></span></span><br>";
                             urlList.push(f.path);
                             id++;
                             rows++;

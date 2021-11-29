@@ -213,6 +213,10 @@ vector<string> parseLogs(vector<string> dirFiles)
                 }                
                 getIpAddress = false;
             }
+            if(stoi(tokens.at(6)) < 50000)
+            {
+                continue;
+            }
             //If GET Find HTTP
             if(command == "GET")
             {
@@ -282,7 +286,7 @@ vector<string> parseLogs(vector<string> dirFiles)
                     }
                 }
                 //Check User Agent for Browser
-                if((tokens.at(7).find("Mozilla") != string::npos && tokens.at(7).find("Safari") != string::npos && tokens.at(7).find("Chrome") != string::npos) || tokens.at(7) == "Client/21.10.13.18 CFNetwork/1240.0.4 Darwin/20.6.0")
+                if((tokens.at(7).find("Mozilla") != string::npos && tokens.at(7).find("Safari") != string::npos && tokens.at(7).find("Chrome") != string::npos) || tokens.at(7) == "Client/21.10.13.18 CFNetwork/1240.0.4 Darwin/20.6.0" || tokens.at(7) == "-")
                 {
                     //Check blocklist
                     bool blockListed = false;

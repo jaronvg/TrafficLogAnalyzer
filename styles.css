@@ -131,6 +131,29 @@ a {
     height: 400px;
     background-color: mediumseagreen;
     border: 3px dashed lightgrey;
+    border-radius: 14px;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+
+#drag-file::-webkit-scrollbar {
+    width: 10px;
+    border-radius: 12px;
+    height: 380px;
+}
+
+#drag-file::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 12px;
+}
+
+#drag-file::-webkit-scrollbar-thumb {
+    background: #a9a9a9;
+    border-radius: 12px;
+}
+
+#drag-file::-webkit-scrollbar-thumb:hover {
+    background: lightgreen;
     border-radius: 12px;
 }
 

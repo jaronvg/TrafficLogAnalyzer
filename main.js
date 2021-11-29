@@ -30,6 +30,20 @@ function createWindow () {
                 }
             }
         });
+        fs.readdir("answers", (error, dirFiles) => {
+            if (error) {
+                throw error;
+            }
+            for (const file of dirFiles) {
+                if (file != "ignore.txt") {
+                    fs.unlink("answers/" + file, error => {
+                        if (error) {
+                            throw error;
+                        }
+                    });
+                }
+            }
+        });
         try {
             fs.unlinkSync("testSort.txt");
         } catch (error) {

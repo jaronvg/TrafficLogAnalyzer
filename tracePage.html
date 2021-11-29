@@ -13,10 +13,12 @@
     <div id="drag-file">
         <br>
         <br>
-        <button id="click">Browse</button>
+        <button id="click">Upload Trace</button>
+        <button id="clickGT">Upload Truth</button>
         <p id="pAdd">Or</p><br>
         <h2 id="headerAdd">Drag and Drop Files Here</h2>
         <input id="fileIn" type="file" onchange="getInput()" hidden />
+        <input id="fileInTwo" type="file" onchange="copyFiles()" hidden />
         <p id="test"></p>
         <p id="test2"></p>
         <script>
@@ -27,7 +29,11 @@
             function getFileExplorer() {
                 document.getElementById('fileIn').click();
             }
+            function getFileExplorerTwo() {
+                document.getElementById('fileInTwo').click();
+            }
             document.getElementById('click').onclick = getFileExplorer;
+            document.getElementById('clickGT').onclick = getFileExplorerTwo;
             function removeLine(button, id) {
                 button.remove();
                 document.getElementById(id).remove();
@@ -45,7 +51,12 @@
                 console.log('URLs: ', urlList);
                 console.log('ID: ', id);
             }
-
+            function copyFiles() {
+                fs = require('fs');
+                fs.copyFile(document.getElementById('fileInTwo').files[0].path, "./answers/" + document.getElementById('fileInTwo').files[0].name, (err) => {
+                    if (err) throw err;
+                });
+            }
             function getInput() {
                 if (check) {
                     document.getElementById("headerAdd").setAttribute("id", "headerRemove");

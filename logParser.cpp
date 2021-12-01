@@ -157,7 +157,7 @@ vector<string> parseLogs(vector<string> dirFiles)
         ifstream read, correctFile;
         ofstream traceFile;
         string line;
-        bool newLink = true, getInitTime = true, getIpAddress = true, getCorrect = true;
+        bool newLink = true, getInitTime = true, getIpAddress = true, getCorrect = true, notFound = true;
         int lineNumber = 0, timeSpent = 0, correct = 0, incorrect = 0, numOfUrls = 0;
         vector<string> correctUrls;
         read.open(dirFiles.at(i));
@@ -193,7 +193,12 @@ vector<string> parseLogs(vector<string> dirFiles)
                 correctFile.open("answers/" + filename + "Correct.txt");
                 if(!correctFile.is_open())
                 {
-                    cout << "File could not be opened." << endl;
+                    cout << "Answer file could not be opened." << endl;
+                    notFound = true;
+                }
+                else
+                {
+                    notFound = false;
                 }
                 
                 while(getline(correctFile, correctLine))
@@ -363,8 +368,10 @@ vector<string> parseLogs(vector<string> dirFiles)
             prevTimeSpent = timeSpent;
             traceFile << traceData.at(x) << "\t" << timeSpent << endl;
         }
-        
-        traceFile << "Correctness = " << ((double)correct / (double)(numOfUrls)) * 100 << "%" << endl;
+        if(notFound == false)
+        {
+            traceFile << "Correctness = " << ((double)correct / (double)(numOfUrls)) * 100 << "%" << endl;
+        }
         //return trace;
     }
     //Delete

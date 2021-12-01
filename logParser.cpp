@@ -149,7 +149,7 @@ void sortFile(vector<string> &trafficLog)
 
 vector<string> parseLogs(vector<string> dirFiles)
 {
-    vector<string> blockListTerms = {"apple.com", ".api.", "ads", "update", "mzstatic", "i.", "s.", "useast1a", "inappcheck", "cdn", "nod.", "nikecloud", "gateway.", "init.push", "smp-device", "central1", "spclient", "prod.net", "tiktokv", "us-west", "adblock", "mobile-data"};
+    vector<string> blockListTerms = {"apple.com", "api.", "connect.facebook.net", "googletag", "google-analytic", ".api", "googleapis", "apis.", "ads", "update", "mzstatic", "useast1a", "inappcheck", "cdn", "nod.", "nikecloud", "gateway.", "init.push", "smp-device", "central1", "spclient", "prod.net", "tiktokv", "gstatic", "us-west", "adblock", "mobile-data", ".app."};
     for(int i = 0; i < dirFiles.size(); i++)
     {
         vector<string> trace, fileToSort, traceData;
@@ -279,7 +279,8 @@ vector<string> parseLogs(vector<string> dirFiles)
             //If CONNECT Find HTTPS
             else if(command == "CONNECT")
             {
-                if(trace.size() > 1){
+                if(trace.size() > 1)
+                {
                     if(trace.at(trace.size() - 1) == url)
                     {
                         continue;
@@ -290,6 +291,20 @@ vector<string> parseLogs(vector<string> dirFiles)
                 {
                     //Check blocklist
                     bool blockListed = false;
+                    vector<string> urlTokens;
+                    string urlToken;
+                    stringstream ss1(url);
+                    while(getline(ss1, urlToken, '.'))
+                    {
+                        urlTokens.push_back(urlToken);
+                    }
+                    if(urlTokens.at(0) != "www" && urlTokens.at(0) != "mobile")
+                    {
+                        if(urlTokens.size() > 2)
+                        {
+                            continue;
+                        }
+                    }
                     for(int z = 0; z < blockListTerms.size(); z++)
                     {
                         if(url.find(blockListTerms.at(z)) != string::npos)
@@ -317,6 +332,7 @@ vector<string> parseLogs(vector<string> dirFiles)
         }
         newFile.close();
         //Send to File, Process time
+        int prevTimeSpent;
         for(int x = 0; x < traceData.size(); x++)
         {
             if(x + 1 < holdTimes.size())
@@ -327,6 +343,24 @@ vector<string> parseLogs(vector<string> dirFiles)
             {
                 timeSpent = -1;
             }
+            stringstream ss1(traceData.at(x));
+            string finalToken;
+            vector<string> finalTokens;
+            while(getline(ss1, finalToken, '\t'))
+            {
+                finalTokens.push_back(finalToken);
+            }
+            if(finalTokens.at(1) == "www.instagram.com")
+            {
+                if(x != 0)
+                {
+                    if(prevTimeSpent < 10)
+                    {
+                        continue;
+                    }
+                }
+            }
+            prevTimeSpent = timeSpent;
             traceFile << traceData.at(x) << "\t" << timeSpent << endl;
         }
         

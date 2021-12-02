@@ -53,7 +53,7 @@
             }
             function copyFiles() {
                 fs = require('fs');
-                fs.copyFile(document.getElementById('fileInTwo').files[0].path, "./answers/" + document.getElementById('fileInTwo').files[0].name, (err) => {
+                fs.copyFile(document.getElementById('fileInTwo').files[0].path, "./resources/app/answers/" + document.getElementById('fileInTwo').files[0].name, (err) => {
                     if (err) throw err;
                 });
             }
@@ -137,7 +137,7 @@
             })();
             function doTrace(params, doAll, idx) {
                 var child = require('child_process').execFile;
-                var executablePath = "a.exe";
+                var executablePath = "./resources/app/a.exe";
                 var parameters = [];
                 if (document.getElementsByName("fname")[0].value == "") {
                     document.getElementsByName("fname")[0].setAttribute("id", "devIdError");

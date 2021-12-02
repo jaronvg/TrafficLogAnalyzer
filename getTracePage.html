@@ -21,7 +21,7 @@
         document.getElementById("devID").value = devID;
         var filePaths = [];
         window.onload = function () {
-            const testFolder = './traces/';
+            const testFolder = './resources/app/traces';
             const getFiles = require('fs');
             getFiles.readdirSync(testFolder).forEach(file => {
                 if (file != "ignore.txt") {
@@ -45,7 +45,7 @@
         }
         function deleteTrace(x) {
             const fs = require("fs");
-            const filePath = "traces/" + filePaths[x];
+            const filePath = "./resources/app/traces/" + filePaths[x];
 
             try {
                 fs.unlinkSync(filePath);

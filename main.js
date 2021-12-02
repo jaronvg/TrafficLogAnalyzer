@@ -16,13 +16,13 @@ function createWindow () {
   mainWindow.loadFile('index.html')
     mainWindow.on('close', function () {
         const fs = require("fs");
-        fs.readdir("traces", (error, dirFiles) => {
+        fs.readdir("./resources/app/traces", (error, dirFiles) => {
             if (error) {
                 throw error;
             }
             for (const file of dirFiles) {
                 if (file != "ignore.txt") {
-                    fs.unlink("traces/" + file, error => {
+                    fs.unlink("./resources/app/traces" + file, error => {
                         if (error) {
                             throw error;
                         }
@@ -30,13 +30,13 @@ function createWindow () {
                 }
             }
         });
-        fs.readdir("answers", (error, dirFiles) => {
+        fs.readdir("./resources/app/answers", (error, dirFiles) => {
             if (error) {
                 throw error;
             }
             for (const file of dirFiles) {
                 if (file != "ignore.txt") {
-                    fs.unlink("answers/" + file, error => {
+                    fs.unlink("./resources/app/answers" + file, error => {
                         if (error) {
                             throw error;
                         }
@@ -45,7 +45,7 @@ function createWindow () {
             }
         });
         try {
-            fs.unlinkSync("testSort.txt");
+            fs.unlinkSync("./resources/app/testSort.txt");
         } catch (error) {
             console.error(error);
         }

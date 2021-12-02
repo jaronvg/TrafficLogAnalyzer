@@ -9,27 +9,6 @@
 
 using namespace std;
 
-vector<string> readDir()
-{
-    DIR *direct;
-    struct dirent *dRead;
-    vector<string> dirFiles;
-
-    if((direct = opendir("C:\\Users\\jaron\\Desktop\\School\\USF\\Fall2021\\Senior Project\\Logs")) != nullptr)
-    {
-        while((dRead = readdir(direct)) != nullptr)
-        {
-            dirFiles.push_back(dRead->d_name);
-        }
-        closedir(direct);
-    }
-    else
-    {
-        cout << "Directory is empty." << endl;
-    }
-    return dirFiles;
-}
-
  int timeInSeconds(stringstream &timeStamp)
  {
     string hours, minutes, seconds;
@@ -190,7 +169,7 @@ vector<string> parseLogs(vector<string> dirFiles)
                 int pos = dirFiles.at(i).find_last_of("\\");
                 int pos2 = dirFiles.at(i).find(".txt");
                 string filename = dirFiles.at(i).substr(pos, pos2 - pos);
-                correctFile.open("answers/" + filename + "Correct.txt");
+                correctFile.open("resources/app/answers/" + filename + "Correct.txt");
                 if(!correctFile.is_open())
                 {
                     cout << "Answer file could not be opened." << endl;
@@ -211,7 +190,7 @@ vector<string> parseLogs(vector<string> dirFiles)
             }
             if(getIpAddress == true)
             {
-                traceFile.open("traces/trace" + tokens.at(2) + ".txt", ios::app);
+                traceFile.open("resources/app/traces/trace" + tokens.at(2) + ".txt", ios::app);
                 if(!traceFile.is_open())
                 {
                     cout << "File could not be opened." << endl;

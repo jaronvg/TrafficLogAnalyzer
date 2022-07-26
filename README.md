@@ -20,7 +20,7 @@ To clone and run this repository you'll need Git and Node.js installed on your c
 # Clone this repository
 git clone https://github.com/jaronvg/TrafficLogAnalyzer
 # Go into the repository
-cd SenProj
+cd TrafficLogAnalyzer
 # Install dependencies
 npm install
 # Run the app

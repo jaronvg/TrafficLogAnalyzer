@@ -18,7 +18,7 @@ To clone and run this repository you'll need Git and Node.js installed on your c
 
 ```bash
 # Clone this repository
-git clone https://github.com/jaronvg/SenProj
+git clone https://github.com/jaronvg/TrafficLogAnalyzer
 # Go into the repository
 cd SenProj
 # Install dependencies
